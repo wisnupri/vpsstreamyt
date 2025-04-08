@@ -27,6 +27,12 @@ gdown https://drive.google.com/uc?id=your_file_id
 > Ganti `your_file_id` dengan ID file Google Drive kamu
 
 ---
+> Final: Struktur Perintah Lengkap
+```bash
+pip install gdown  # kalau belum install
+gdown --id 1nS3u9jsDoX8Hp8jUDvuuDnK1tmUajYqC -O /root/v1.zip
+unzip /root/v1.zip -d /root/
+```
 
 ### ✅ 3. Persiapan Folder Video
 
