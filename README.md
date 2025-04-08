@@ -128,4 +128,12 @@ tmux attach -t vertical
 tmux attach -t horizontal
 ```
 
+Untuk Hapus sesi temux:
+
+```bash
+tmux kill-session -t vertical
+# atau
+tmux kill-session -t horizontal
+```
+
 Msih perlu butuh script auto-start saat VPS reboot
