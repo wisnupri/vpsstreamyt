@@ -79,7 +79,7 @@ Isi dengan:
 
 ```bash
 #!/bin/bash
-ffmpeg -re -i /root/video_normal/vid2.mp4 \
+ffmpeg -stream_loop -1 -re -i /root/video_normal/vid2.mp4 \
 -vf "fps=30,scale=-2:1080" \
 -c:v libx264 -preset veryfast -b:v 6000k -maxrate 7000k -bufsize 8000k \
 -g 60 -keyint_min 60 -sc_threshold 0 \
