@@ -33,6 +33,10 @@ pip install gdown  # kalau belum install
 gdown --id your_file_id -O /root/v1.zip
 unzip /root/v1.zip -d /root/
 ```
+Copy File bisa pakai perintah
+```bash
+sudo mv /home/ubuntu/v6.mp4 /root/video_vertical/
+```
 
 ### ✅ 3. Persiapan Folder Video
 
