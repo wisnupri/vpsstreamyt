@@ -82,12 +82,19 @@ Isi dengan:
 
 ```bash
 #!/bin/bash
-ffmpeg -stream_loop -1 -re -i /root/video_normal/vid2.mp4 \
--vf "fps=30,scale=-2:1080" \
--c:v libx264 -preset veryfast -b:v 6000k -maxrate 7000k -bufsize 8000k \
--g 60 -keyint_min 60 -sc_threshold 0 \
--c:a aac -b:a 160k -ar 44100 \
--f flv rtmp://a.rtmp.youtube.com/live2/YOUR_HORIZONTAL_KEY
+
+while true; do
+  echo "Starting stream..."
+  ffmpeg -stream_loop -1 -re -i /root/video_normal/vid2.mp4 \
+  -vf "fps=30,scale=-2:720" \
+  -c:v libx264 -preset veryfast -b:v 4000k -maxrate 5000k -bufsize 6000k \
+  -g 60 -keyint_min 60 -sc_threshold 0 \
+  -c:a aac -b:a 160k -ar 44100 \
+  -f flv rtmp://a.rtmp.youtube.com/live2/YOUR_HORIZONTAL_KEY
+
+  echo "Stream crashed or disconnected. Reconnecting in 5 seconds..."
+  sleep 5
+done
 ```
 
 > Ganti `YOUR_HORIZONTAL_KEY` dengan stream key horizontal YouTube kamu
