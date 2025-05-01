@@ -71,6 +71,31 @@ while true; do
   done
 done
 ```
+jika perlu mp3
+```bash
+#!/bin/bash
+
+while true; do
+  for file in /root/video_vertical/*.mp4; do
+    # Ambil satu file musik mp3 secara acak dari folder /root/music/
+    music=$(find /root/music/ -type f -iname "*.mp3" | shuf -n 1)
+
+    echo "▶️ Streaming video: $file + audio: $music"
+
+    ffmpeg -re -stream_loop -1 -i "$music" -re -i "$file" \
+    -filter_complex "[1:v]fps=30,scale=720:1280,drawtext=fontfile=/usr/share/fonts/truetype/roboto/Roboto-Bold.ttf:text='Subscribe Simfoni Hutan':fontcolor=white@0.65:fontsize=40:borderw=2:bordercolor=black:x=w-mod(t*100\,w+text_w):y=20[v]" \
+    -map "[v]" -map 0:a \
+    -c:v libx264 -preset veryfast -b:v 4000k -maxrate 5000k -bufsize 6000k \
+    -g 60 -keyint_min 60 -sc_threshold 0 \
+    -c:a aac -b:a 160k -ar 44100 \
+    -shortest \
+    -f flv rtmp://a.rtmp.youtube.com/live2/YOUR_VERTICAL_KEY
+
+    echo "⚠️ FFmpeg exited with status $? - reconnecting in 5 seconds..."
+    sleep 5
+  done
+done
+```
 
 > Ganti `YOUR_VERTICAL_KEY` dengan stream key vertikal YouTube kamu
 
